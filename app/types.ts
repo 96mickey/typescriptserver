@@ -1,7 +1,7 @@
 // import { Request } from "express";
 
 export interface UserItem {
-  id?: number;
+  id?: string;
   firstName: string;
   middleName: string;
   lastName: string;
@@ -12,7 +12,7 @@ export interface UserItem {
 }
 
 export interface UserValidation {
-  id?: number;
+  id?: string;
   firstName?: string;
   middleName?: string;
   lastName?: string;

@@ -1,8 +1,7 @@
-// import { Request, Response } from "express";
 import express from "express";
-import * as UserController from "../controllers/user/userController";
+import * as UserController from "./controllers";
 
-export class Users {
+export class Routes {
   public routes(app: express.Application): void {
     app.get("/user", UserController.getAllUsers);
     app.get("/user/:id", UserController.getSingleUser);

@@ -1,10 +1,10 @@
 import express from "express";
 import * as bodyParser from "body-parser";
-import { Users } from "./routes/userRoutes";
+import Routes from "./user";
 
-class App {
+export class App {
   public app: express.Application;
-  public userRoutes: Users = new Users();
+  public userRoutes: Routes = new Routes();
 
   constructor() {
     this.app = express();
@@ -17,5 +17,3 @@ class App {
     this.app.use(bodyParser.urlencoded({ extended: false }));
   }
 }
-
-export default new App().app;
