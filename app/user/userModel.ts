@@ -18,22 +18,11 @@ export class UserModel {
 
   save() {
     getUsersFromFile((users: UserItem[]) => {
-      if (this.id) {
-        const existingProductIndex = users.findIndex(user => {
-          return user.id === this.id;
-        });
-        const updatedUsers = [...users];
-        updatedUsers[existingProductIndex] = this;
-        fs.writeFile(p, JSON.stringify(updatedUsers), err => {
-          console.log(err);
-        });
-      } else {
-        this.id = Date.now().toString();
-        users.push(this);
-        fs.writeFile(p, JSON.stringify(users), err => {
-          console.log(err);
-        });
-      }
+      this.id = Date.now().toString();
+      users.push(this);
+      fs.writeFile(p, JSON.stringify(users), err => {
+        console.log(err);
+      });
     });
   }
 }
