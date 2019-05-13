@@ -1,7 +1,9 @@
 import { Request, Response } from "express";
 // import UserMdl from "../model/user";
 import { UserItem } from "../types";
-import { UserMdl } from "./userModal";
+import { UserControlModel as UserMdl } from "./userControlModel";
+import { ValidateReq } from "./utils";
+import { UserModel as User } from "./userModel";
 
 export const getAllUsers = (req: Request, res: Response) => {
   UserMdl.find((users: UserItem) => {
@@ -12,7 +14,7 @@ export const getAllUsers = (req: Request, res: Response) => {
 };
 
 export const getSingleUser = (req: Request, res: Response) => {
-  let validation = UserMdl.validateReq(req.body, req.params);
+  let validation = ValidateReq(req.body, req.params);
 
   if (!validation) return res.status(400).send("Validation failed.");
 
@@ -23,17 +25,17 @@ export const getSingleUser = (req: Request, res: Response) => {
 };
 
 export const addUser = (req: Request, res: Response) => {
-  let validation = UserMdl.validateReq(req.body, req.params);
+  let validation = ValidateReq(req.body, req.params);
 
   if (!validation) return res.status(400).send("Validation failed.");
 
-  let newUser = new UserMdl(req.body);
+  let newUser = new User(req.body);
   newUser.save();
   res.send({ data: newUser });
 };
 
 export const deleteSingleUser = (req: Request, res: Response) => {
-  let validation = UserMdl.validateReq(req.body, req.params);
+  let validation = ValidateReq(req.body, req.params);
 
   if (!validation) return res.status(400).send("Validation failed.");
 
@@ -43,11 +45,11 @@ export const deleteSingleUser = (req: Request, res: Response) => {
 };
 
 export const editUser = (req: Request, res: Response) => {
-  let validation = UserMdl.validateReq(req.body, req.params);
+  let validation = ValidateReq(req.body, req.params);
 
   if (!validation) return res.status(400).send("Validation failed.");
 
-  let user = new UserMdl({ ...req.body });
+  let user = new User({ ...req.body });
 
   user.save();
 
