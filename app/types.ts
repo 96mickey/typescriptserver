@@ -1,4 +1,4 @@
-// import { Request } from "express";
+import { Request, Response } from "express";
 
 export interface UserItem {
   id?: string;
@@ -21,3 +21,5 @@ export interface UserValidation {
   address?: string;
   role?: number;
 }
+
+export type CallbackFunction = (req: Request, res: Response) => void;
