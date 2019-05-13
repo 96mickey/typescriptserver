@@ -24,4 +24,18 @@ export class UserControlModel {
       cb(users);
     });
   };
+
+  static findoneAndUpdate = (id: string, user: UserItem, cb: any) => {
+    getUsersFromFile((users: UserItem[]) => {
+      const existingProductIndex = users.findIndex(user => {
+        return user.id === id;
+      });
+      const updatedUsers = [...users];
+      updatedUsers[existingProductIndex] = user;
+      fs.writeFile(p, JSON.stringify(updatedUsers), err => {
+        console.log(err);
+      });
+      cb(user);
+    });
+  };
 }

@@ -31,7 +31,7 @@ export class Controllers {
 
     let newUser = new User(req.body);
     newUser.save();
-    res.send({ data: newUser });
+    res.json(newUser);
   };
 
   deleteSingleUser = (req: Request, res: Response) => {
@@ -49,10 +49,12 @@ export class Controllers {
 
     if (!validation) return res.status(400).send("Validation failed.");
 
-    let user = new User({ ...req.body });
-
-    user.save();
-
-    res.json(user);
+    UserMdl.findoneAndUpdate(
+      req.params.id,
+      req.body,
+      (user: UserItem | void) => {
+        res.json(user);
+      }
+    );
   };
 }
