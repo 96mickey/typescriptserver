@@ -1,6 +1,11 @@
 import fs from "fs";
-import { getUsersFromFile, p } from "./utils";
-import { UserItem } from "../types";
+import { getUsersFromFile, pathfunction } from "../utils";
+// import { UserItem } from "../types";
+
+enum Role {
+  user,
+  admin
+}
 
 export class UserModel {
   id?: string;
@@ -10,17 +15,17 @@ export class UserModel {
   email: string = "";
   phoneNumber: number = 0;
   address: string = "";
-  role?: number = 0;
+  role?: Role = Role.user;
 
   constructor(init?: Partial<UserModel>) {
     Object.assign(this, init);
   }
 
   save() {
-    getUsersFromFile((users: UserItem[]) => {
+    getUsersFromFile("user.json", (users: UserModel[]) => {
       this.id = Date.now().toString();
       users.push(this);
-      fs.writeFile(p, JSON.stringify(users), err => {
+      fs.writeFile(pathfunction("user.json"), JSON.stringify(users), err => {
         console.log(err);
       });
     });

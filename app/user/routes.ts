@@ -1,5 +1,4 @@
 import express from "express";
-import * as UserController from "./controllers";
 import { Controllers } from "./controllers";
 let controllers = new Controllers();
 

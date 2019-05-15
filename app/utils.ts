@@ -1,15 +1,19 @@
-import { UserValidation } from "../types";
+// import { UserItem } from "../types";
 import fs from "fs";
 const path = require("path");
+import { UserModel as User } from "./user/model";
 
-export const p = path.join(
-  path.dirname((<any>process.mainModule).filename),
-  "../data",
-  "user.json"
-);
+export const pathfunction = (file: string) => {
+  console.log("main module", process.mainModule);
+  return path.join(
+    path.dirname((<any>process.mainModule).filename),
+    "../data",
+    file
+  );
+};
 
-export const getUsersFromFile = (cb: any) => {
-  fs.readFile(p, (err, fileContent) => {
+export const getUsersFromFile = (path: any, cb: any) => {
+  fs.readFile(pathfunction(path), (err, fileContent) => {
     if (err) {
       console.log("err", err);
       cb([]);
@@ -20,8 +24,8 @@ export const getUsersFromFile = (cb: any) => {
 };
 
 export const ValidateReq = (
-  validationBody: UserValidation,
-  validationParams: UserValidation
+  validationBody: User,
+  validationParams: User
 ): boolean => {
   let validationData = { ...validationBody, ...validationParams };
   if (validationData.id && isNaN(Number(validationData.id))) {
