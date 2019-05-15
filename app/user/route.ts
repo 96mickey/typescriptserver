@@ -1,5 +1,5 @@
 import express from "express";
-import { Controllers } from "./controllers";
+import { Controllers } from "./controller";
 let controllers = new Controllers();
 
 export class Routes {
