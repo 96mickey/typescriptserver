@@ -1,14 +1,13 @@
 import { Request, Response } from "express";
-// import { UserItem } from "../types";
-import { DataFunctions } from "./dataFunctions";
+import { DataFunctions } from "./data-functions";
 import { ValidateReq } from "../utils";
 import { UserModel as User } from "./model";
 
 export class Controllers {
   getAllUsers = (req: Request, res: Response): void => {
-    DataFunctions.find((users: User) => {
+    DataFunctions.find((users: User[]) => {
       res.send({
-        users: users
+        users
       });
     });
   };

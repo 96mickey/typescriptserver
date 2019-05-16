@@ -1,10 +1,8 @@
-// import { UserItem } from "../types";
 import fs from "fs";
 const path = require("path");
 import { UserModel as User } from "./user/model";
 
 export const pathfunction = (file: string) => {
-  console.log("main module", process.mainModule);
   return path.join(
     path.dirname((<any>process.mainModule).filename),
     "../data",
@@ -12,7 +10,7 @@ export const pathfunction = (file: string) => {
   );
 };
 
-export const getUsersFromFile = (path: any, cb: any) => {
+export const getDataFromFile = (path: any, cb: any) => {
   fs.readFile(pathfunction(path), (err, fileContent) => {
     if (err) {
       console.log("err", err);
@@ -20,6 +18,12 @@ export const getUsersFromFile = (path: any, cb: any) => {
     } else {
       cb(JSON.parse(fileContent as any));
     }
+  });
+};
+
+export const writeData = (file: string, data: any[]) => {
+  fs.writeFile(pathfunction(file), JSON.stringify(data), err => {
+    console.log(err);
   });
 };
 

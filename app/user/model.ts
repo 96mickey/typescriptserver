@@ -1,11 +1,5 @@
-import fs from "fs";
-import { getUsersFromFile, pathfunction } from "../utils";
-// import { UserItem } from "../types";
-
-enum Role {
-  user,
-  admin
-}
+import { getDataFromFile, writeData } from "../utils";
+import { Role } from "../types";
 
 export class UserModel {
   id?: string;
@@ -22,12 +16,10 @@ export class UserModel {
   }
 
   save() {
-    getUsersFromFile("user.json", (users: UserModel[]) => {
+    getDataFromFile("user.json", (users: UserModel[]) => {
       this.id = Date.now().toString();
       users.push(this);
-      fs.writeFile(pathfunction("user.json"), JSON.stringify(users), err => {
-        console.log(err);
-      });
+      writeData("user.json", users);
     });
   }
 }
