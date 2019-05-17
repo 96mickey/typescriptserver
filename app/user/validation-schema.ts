@@ -18,6 +18,7 @@ export class UserSchema {
     maxLength: 50
   };
   email = {
+    type: "string",
     regex: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/,
     required: true
   };

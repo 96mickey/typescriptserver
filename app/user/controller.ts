@@ -1,9 +1,17 @@
 import { Request, Response } from "express";
 import { DataFunctions } from "./data-functions";
-import { ValidateReq } from "../utils";
 import { UserModel as User } from "./model";
 
+/**
+ * Creates a class Controllers.
+ */
 export class Controllers {
+  /**
+   * Creates an instance of Circle. Applies to all the methods in this class.
+   *
+   * @param {Request} req Request object from Express
+   * @param {Response} res Response object from Express.
+   */
   getAllUsers = (req: Request, res: Response): void => {
     DataFunctions.find((users: User[]) => {
       res.send({
@@ -12,11 +20,12 @@ export class Controllers {
     });
   };
 
+  /**
+   * @param {number} req.params.id is required from user end in the url. This should be a number. It is required for uniquely identifying the user.
+   */
   getSingleUser = (req: Request, res: Response): void => {
-    let validation = ValidateReq(req.body, req.params);
-
-    if (!validation) {
-      res.status(400).send("Validation failed.");
+    if (!req.params.id || isNaN(Number(req.params.id))) {
+      res.status(400).send("Id is not valid.");
       return;
     }
 
@@ -26,24 +35,21 @@ export class Controllers {
     });
   };
 
+  /**
+   * @param {object} req.body is required and should contain data to create a new user. it holds various fields like first name, last name, email etc.
+   */
   addUser = (req: Request, res: Response): void => {
-    let validation = ValidateReq(req.body, req.params);
-
-    if (!validation) {
-      res.status(400).send("Validation failed.");
-      return;
-    }
-
     let newUser = new User(req.body);
     newUser.save();
     res.json(newUser);
   };
 
+  /**
+   * @param {number} req.params.id is required from user end in the url. This should be a number. It is required to delete certain user.
+   */
   deleteSingleUser = (req: Request, res: Response): void => {
-    let validation = ValidateReq(req.body, req.params);
-
-    if (!validation) {
-      res.status(400).send("Validation failed.");
+    if (!req.params.id || isNaN(Number(req.params.id))) {
+      res.status(400).send("Id is not valid.");
       return;
     }
 
@@ -52,11 +58,13 @@ export class Controllers {
     });
   };
 
+  /**
+   * @param {number} req.params.id is required from user end in the url. This should be a number. It is required for uniquely identifying the user.
+   * @param {number} req.body is required from to update the details of certain user.
+   */
   editUser = (req: Request, res: Response) => {
-    let validation = ValidateReq(req.body, req.params);
-
-    if (!validation) {
-      res.status(400).send("Validation failed.");
+    if (!req.params.id || isNaN(Number(req.params.id))) {
+      res.status(400).send("Id is not valid.");
       return;
     }
 

@@ -5,9 +5,14 @@ import { UserSchema } from "./validation-schema";
 
 let controllers = new Controllers();
 
-//getting the schema
+//getting the schema for validating user input
 let schema = new UserSchema();
 
+/**
+ * Creates a class Routes.
+ *
+ * @param {express.Application} app Instance of express application.
+ */
 export class Routes {
   public routes(app: express.Application): void {
     app.get("/user", controllers.getAllUsers);
