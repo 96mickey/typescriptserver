@@ -22,6 +22,7 @@ export const validate = (rules: any) => {
  *
  * @param value The value which is needed to be validated.
  * @param {object} rule provide parameters on the basis of which we need to validate data.
+ * @returns {boolean} Returns a boolean value
  */
 const validateType = (value: any, rule: any) => {
   let isValid = true;
