@@ -22,7 +22,7 @@ export const validate = (rules: any) => {
  *
  * @param value The value which is needed to be validated.
  * @param {object} rule provide parameters on the basis of which we need to validate data.
- * @returns {boolean} Returns a boolean value
+ * @returns {boolean} Returns true if condition is being fullfiled, false otherwise.
  */
 const validateType = (value: any, rule: any) => {
   let isValid = true;
