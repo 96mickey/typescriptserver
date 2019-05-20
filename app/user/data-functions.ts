@@ -10,7 +10,7 @@ export class DataFunctions {
   /**
    * Function to find all the users.
    *
-   * @param {Function} cb
+   * @param {Function} cb callback function to be invoked
    */
   static find = (cb: any) => {
     getDataFromFile("user.json", cb);
@@ -19,8 +19,8 @@ export class DataFunctions {
   /**
    * Function to find a specific user.
    *
-   * @param {Function} cb
    * @param {string} id Id pointing to a specific user in database.
+   * @param {Function} cb callback function to be invoked
    */
   static findOne = (id: string, cb: any): User | void => {
     getDataFromFile("user.json", (users: User[]) => {
@@ -32,8 +32,8 @@ export class DataFunctions {
   /**
    * Function to remove a specific .
    *
-   * @param {Function} cb
    * @param {string} id Id pointing to a specific user in database.
+   * @param {Function} cb callback function to be invoked
    */
   static findOneAndRemove = (id: string, cb: any) => {
     getDataFromFile("user.json", (users: User[]) => {
@@ -47,9 +47,9 @@ export class DataFunctions {
   /**
    * Function to remove a specific .
    *
-   * @param {Function} cb
    * @param {string} id Id pointing to a specific user in database.
    * @param {object} user New data for user to update.
+   * @param {Function} cb callback function to be invoked
    */
   static findoneAndUpdate = (id: string, user: User, cb: any) => {
     getDataFromFile("user.json", (users: User[]) => {
