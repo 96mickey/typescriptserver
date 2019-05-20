@@ -7,7 +7,7 @@ import { UserModel as User } from "./model";
  */
 export class Controllers {
   /**
-   * Creates an instance of Circle. Applies to all the methods in this class.
+   * Gets all users from database.
    *
    * @param {Request} req Request object from Express
    * @param {Response} res Response object from Express.
@@ -21,6 +21,8 @@ export class Controllers {
   };
 
   /**
+   * Gets a single user from Database
+   *
    * @param {number} req.params.id is required from user end in the url. This should be a number. It is required for uniquely identifying the user.
    */
   getSingleUser = (req: Request, res: Response): void => {
@@ -36,6 +38,8 @@ export class Controllers {
   };
 
   /**
+   * Adds a new user to database
+   *
    * @param {object} req.body is required and should contain data to create a new user. it holds various fields like first name, last name, email etc.
    */
   addUser = (req: Request, res: Response): void => {
@@ -45,6 +49,8 @@ export class Controllers {
   };
 
   /**
+   * Deletes a single user
+   *
    * @param {number} req.params.id is required from user end in the url. This should be a number. It is required to delete certain user.
    */
   deleteSingleUser = (req: Request, res: Response): void => {
@@ -59,6 +65,8 @@ export class Controllers {
   };
 
   /**
+   * Edit specific user in database.
+   *
    * @param {number} req.params.id is required from user end in the url. This should be a number. It is required for uniquely identifying the user.
    * @param {number} req.body is required from to update the details of certain user.
    */

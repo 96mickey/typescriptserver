@@ -1,5 +1,10 @@
 import { Request, Response } from "express";
 
+/**
+ * Validate data on the basis of validation-schema.
+ *
+ * @param {object} rules provide parameters on the basis of which we need to validate data.
+ */
 export const validate = (rules: any) => {
   return function(req: Request, res: Response, next: any) {
     for (let key in rules) {
@@ -12,6 +17,12 @@ export const validate = (rules: any) => {
   };
 };
 
+/**
+ * Checks whether the condition is being fullfiled or not.
+ *
+ * @param value The value which is needed to be validated.
+ * @param {object} rule provide parameters on the basis of which we need to validate data.
+ */
 const validateType = (value: any, rule: any) => {
   let isValid = true;
   if (!rule) {
